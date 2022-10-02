@@ -1,7 +1,8 @@
-
+// PriorityQueue.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
 #pragma once
-#ifndef QUEUE_QUEUE_H
-#define QUEUE_QUEUE_H
+#ifndef QUEUEP_QUEUEP_H
+#define QUEUEP_QUEUEP_H
 #include <iostream>
 #include <memory>
 #include <vector>
