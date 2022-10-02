@@ -1,12 +1,13 @@
 
 #pragma once
-#ifndef QUEUE_QUEUE_H
-#define QUEUE_QUEUE_H
+#ifndef QUEUEP_QUEUEP_H
+#define QUEUEP_QUEUEP_H
 #include <iostream>
 #include <memory>
 #include <vector>
 #include <algorithm>
 struct Queue {
+private:
 	struct Node {
 		int data;
 		std::unique_ptr <Node> next;
@@ -20,20 +21,15 @@ struct Queue {
 		{}
 	};
 	std::unique_ptr<Node> head;
+public:
 	~Queue()
 	{
 		while (head)
 			head = std::move(head->next);
 	}
-	Queue() = default;
-	Queue(const std::vector<int>& v)
-	{
-
-		for (int i = 0; i < v.size(); i++)
-		{
-			push(v[i]);
-		}
-	}
+	Queue() {
+		head->next = nullptr;
+	};
 	Queue(const Queue& copy) = default;
 	void push(int value)
 	{
@@ -70,6 +66,10 @@ struct Queue {
 		}
 		return true;
 
+	}
+	Queue& Queue::operator=(const Queue& rhs) {
+		*this = rhs;
+		return *this;
 	}
 	/*std::ostream& operator<<(std::ostream& ostream, const Queue& temp)
 	{
