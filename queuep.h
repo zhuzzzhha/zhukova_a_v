@@ -1,7 +1,7 @@
 
 #pragma once
-#ifndef QUEUEP_QUEUEP_H
-#define QUEUEP_QUEUEP_H
+#ifndef QUEUEP_QUEUEP_H_051022
+#define QUEUEP_QUEUEP_H_051022
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -27,22 +27,28 @@ public:
 		while (head)
 			head = std::move(head->next);
 	}
-	Queue() {
-		head->next = nullptr;
-	};
+	Queue() :head() {};
 	Queue(const Queue& copy) = default;
-	void push(int value)
+	void push(const int value)
 	{
-		Node* prev = head.get();
-		while (value >= prev->next->data && prev->next != nullptr)
+		if (this->head.get() == nullptr)
 		{
-			prev = (prev->next).get();
+			std::unique_ptr<Node> new_value = std::make_unique<Node>();
+			new_value->data = value;
+			new_value->next = nullptr;
+			head = std::move(new_value);
 		}
-		std::unique_ptr<Node> new_value=std::make_unique<Node>();
-		new_value->data = value;
-		new_value->next = std::move(prev->next);
-		prev->next = std::move(new_value);
-
+		else {
+			Node* prev = head.get();
+			while (prev->next!=nullptr && value <= prev->next->data)
+			{
+				prev = (prev->next).get();
+			}
+			std::unique_ptr<Node> new_value = std::make_unique<Node>();
+			new_value->data = value;
+			new_value->next = std::move(prev->next);
+			prev->next = std::move(new_value);
+		}
 	}
 	void pop()
 	{
@@ -98,3 +104,4 @@ std::istream& operator>>(std::istream& istrm, Queue& rhs);
 
 
 #endif
+
