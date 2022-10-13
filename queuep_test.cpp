@@ -8,9 +8,11 @@ TEST_CASE("[queue] - queue ctor")
 	a.push(5);
 	a.push(-1);
 	a.push(0);
-	CHECK(a.top() == -1);
-	a.pop();
 	CHECK(a.top() == 5);
+	a.pop();
+	CHECK(a.top() == 0);
+	a.pop();
+	CHECK(a.top() == -1);
 }
 TEST_CASE("[queue] - queue operators")
 {
