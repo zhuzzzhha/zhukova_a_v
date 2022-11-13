@@ -52,6 +52,13 @@ bool QueueP::operator==(const QueueP& rhs) const
 	}
 	return true;
 }
+bool QueueP::isEmpty() noexcept
+{
+	if (this->head == nullptr)
+		return true;
+	else
+		return false;
+}
 
 
 
