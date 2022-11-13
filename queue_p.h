@@ -30,11 +30,12 @@ public:
 	QueueP() :head() {};
 	QueueP(QueueP&&) noexcept = default;
 	QueueP(const QueueP& copy) = default;
+	bool isEmpty() noexcept;
 	void push(const int& value);
 	void pop() noexcept;
 	const int& top() const;
 	bool operator==(const QueueP& rhs) const;
-	QueueP& operator=(const QueueP& rhs)=default;
+	QueueP& operator=(const QueueP& rhs) = default;
 	QueueP& operator=(QueueP&& other) = default;
 	
 };
