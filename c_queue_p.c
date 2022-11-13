@@ -1,52 +1,39 @@
-#include<cpp_manager/cpp_manager.h>
-#include <c_queue_p/c_queue_p.h>
-#pragma once
+#ifdef __cplusplus
+#include <cstdint>
+using std::uint64_t;
+using std::int32_t;
+extern "C" {
+#else
+#include <stdint.h>
+#endif
+
+   typedef enum {
+       kGood = 0,   // all right
+       kHandlerError, // bad handler
+       kOutOfRange    // queue is empty
+   } ErrorCode ;
+
+   typedef uint64_t QueueHandler;
+   const uint64_t EmptyHandler = NULL;
+   static QueueHandler Handle = 0;
+   ErrorCode CreateQueue(QueueHandler* queue);
+
+   ErrorCode CloneQueue(QueueHandler source, QueueHandler* queue);
+
+   ErrorCode DestroyQueue(QueueHandler* queue);
+
+   ErrorCode Pop(QueueHandler queue);
+
+   ErrorCode Push(QueueHandler queue, int32_t value);
+
+   ErrorCode IsEmpty(QueueHandler queue, int32_t* result);
+
+   ErrorCode Top(QueueHandler queue, int32_t* result);
+
+   const char* WhatIs(ErrorCode err);
+
+#ifdef __cplusplus
+};
+#endif
 
 
-ErrorCode CreateQueueC(QueueHandler* queue);
-ErrorCode CloneQueueC(QueueHandler source, QueueHandler* queue);
-ErrorCode DestroyQueueC(QueueHandler queue);
-ErrorCode PopC(QueueHandler queue);
-ErrorCode PushC(QueueHandler queue, int32_t value);
-ErrorCode IsEmptyC(QueueHandler queue, int32_t* result);
-ErrorCode TopC(QueueHandler queue, int32_t* result);
-
-   ErrorCode CreateQueue(QueueHandler* queue)
-   {
-   	
-   };
-
-   ErrorCode CloneQueue(QueueHandler source, QueueHandler* queue)
-   {
-   	
-   };
-
-   ErrorCode DestroyQueue(QueueHandler* queue)
-   {
-   	
-   };
-
-   ErrorCode Pop(QueueHandler queue)
-   {
-   	
-   };
-
-   ErrorCode Push(QueueHandler queue, int32_t value)
-   {
-   	
-   };
-
-   ErrorCode IsEmpty(QueueHandler queue, int32_t* result)
-   {
-   	
-   };
-
-   ErrorCode Top(QueueHandler queue, int32_t* result)
-   {
-   	
-   };
-
-   const char* WhatIs(ErrorCode err)
-   {
-   	
-   };
